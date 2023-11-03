@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A120</title>
+    <link rel="stylesheet" href="A120.css">
+    <form id="myForm" action="action_page.php">
+        <!-- ... (your form fields) ... -->
+      </form>
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo">Umang.</a>
+        <nav class="navbar">
+            <a href="#" class="active">contact me</a>
+            
+            <a href="#"class="container">Home</a>
+            <a href="https://web.umang.gov.in/landing/">about</a>
+            
+            <a href="#">Services</a>
+        </nav>
+    </header>
+    <section class="Home">
+        <div class="home-content">
+            <h1>Hi my name is Umang</h1>
+            <p>I am a student of Ai department of Noida institute of engg and technology
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, exercitationem. Sunt, error? Voluptates autem harum corrupti minus maxime dolorum vel laboriosam sunt perferendis a.
+            </p>
+
+        </div>
+    </section>
+    
+</body>
+<div class="container">
+    <form id="myForm" action="#">
+        <label for="fname">Name</label>
+        <input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+        <label for="lname">Gmail ID</label>
+        <input type="text" id="lname" name="gmailid" placeholder="gmail id">
+
+        <label for="State">State</label>
+        <select id="State" name="State">
+            <option value="delhi">Delhi</option>
+            <option value="uttar pradesh">Uttar Pradesh</option>
+            <option value="Bihar">Bihar</option>
+        </select>
+
+        <label for="subject">Subject</label>
+        <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+
+        <input type="button" value="Generate and Download File" id="generateFile">
+    </form>
+</div>
+
+<script>
+    // Add an event listener to the "Generate and Download File" button
+    document.getElementById('generateFile').addEventListener('click', function () {
+        // Get user inputs
+        const name = document.getElementById('fname').value;
+        const gmailID = document.getElementById('lname').value;
+        const state = document.getElementById('State').value;
+        const subject = document.getElementById('subject').value;
+
+        // Create a text content for the file
+        const fileContent = `Name: ${name}\nGmail ID: ${gmailID}\nState: ${state}\nSubject: ${subject}`;
+
+        // Create a Blob containing the file content
+        const blob = new Blob([fileContent], { type: 'text/plain' });
+
+        // Create a URL for the Blob
+        const url = URL.createObjectURL(blob);
+
+        // Create an anchor element to trigger the download
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'user_info.txt'; // Set the file name
+        a.style.display = 'none';
+
+        // Add the anchor element to the document and trigger a click event
+        document.body.appendChild(a);
+        a.click();
+
+        // Clean up
+        URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+    });
+</script>
+</html>
